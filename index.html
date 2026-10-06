@@ -124,7 +124,10 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
 .panel-cap i{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .feature .panel{aspect-ratio:4/3}
 #fraudViz{position:absolute;inset:0;width:100%;height:100%}
-.proj-org{font-size:15px;color:var(--cobalt);font-weight:600;margin-bottom:14px}
+.proj-org{display:inline-block;font-size:14.5px;font-weight:600;color:var(--cobalt);background:rgba(51,70,240,.09);
+  padding:6px 13px;border-radius:999px;margin-bottom:16px;line-height:1.3}
+.trio .proj-org{background:var(--signal);color:var(--ink);font-weight:700}
+.proj-org.nv{background:#76B900;color:#0B1A00;box-shadow:0 8px 22px -10px rgba(118,185,0,.75)}
 .proj h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.03em;margin-bottom:16px}
 .feature .proj h3{font-size:clamp(32px,3.6vw,50px)}
 .proj p{color:var(--muted);margin-bottom:22px}
@@ -140,13 +143,55 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
 
 /* approach */
 .approach{background:var(--paper-2)}
-.approach-top{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,90px);align-items:start}
-.approach-top p{color:var(--muted)}
-.approach-top p.big{font:500 clamp(21px,1.9vw,26px)/1.4 var(--display);color:var(--txt);letter-spacing:-.01em;margin-bottom:20px}
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px);margin-top:clamp(56px,7vw,90px);counter-reset:r}
-.rule{border-top:3px solid var(--txt);padding-top:24px}
-.rule h3{font-size:26px;margin-bottom:12px}
-.rule p{color:var(--muted);font-size:16px}
+.approach-top{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,6vw,90px);align-items:end}
+.approach-top .h2{max-width:13ch}
+.approach-top p{color:var(--muted);max-width:52ch}
+.approach-top strong{display:block;font:600 clamp(21px,1.9vw,26px)/1.3 var(--display);color:var(--txt);letter-spacing:-.015em;margin-bottom:12px}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px);margin-top:clamp(56px,7vw,88px)}
+.rule{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px 12px 30px;display:flex;flex-direction:column}
+.rule h3{font-size:25px;margin:26px 18px 10px}
+.rule p{color:var(--muted);font-size:16px;margin:0 18px}
+.viz{background:var(--paper);border-radius:12px;height:190px;padding:22px 22px 18px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.viz .viz-cap{margin:0 0 12px;font-size:13px;font-weight:600;color:var(--txt)}
+.cmp{position:relative;display:grid;gap:16px;padding-top:22px}
+.cmp-row span,.sh-row span{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;line-height:1.2}
+.track{height:14px;border-radius:7px;background:rgba(19,32,47,.06)}
+.track i,.sh-track i{display:block;height:100%;border-radius:inherit;width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.rule.in .track i,.rule.in .sh-track i{width:var(--w)}
+.b-base{background:#A9B1BE}
+.b-model{background:var(--cobalt);transition-delay:.25s!important}
+.cmp-bar{position:absolute;top:0;bottom:-4px;left:var(--x);border-left:2px dashed var(--signal)}
+.cmp-bar em{position:absolute;right:8px;top:-2px;font:600 12px/1 var(--sans);font-style:normal;color:var(--signal);white-space:nowrap}
+.shap{display:grid;gap:10px}
+.sh-track{position:relative;height:12px}
+.sh-track::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1.5px;background:var(--txt);opacity:.35}
+.sh-track i{position:absolute;top:0;border-radius:6px}
+.sh-track i.up{left:50%;background:var(--signal)}
+.sh-track i.down{right:50%;background:var(--cobalt)}
+.sh-row:nth-child(2) i{transition-delay:.15s}.sh-row:nth-child(3) i{transition-delay:.3s}
+.feel{flex-direction:row;align-items:center;justify-content:flex-start;gap:20px}
+.feel-num{font:800 clamp(64px,6vw,86px)/.9 var(--display);letter-spacing:-.05em;color:var(--cobalt)}
+.viz.feel p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.35}
+.people{display:grid;grid-template-columns:repeat(5,14px);gap:6px;margin:12px 0}
+.people i{width:14px;height:14px;border-radius:50%;background:var(--txt);opacity:.85}
+.people i:nth-child(n+11){opacity:.5}
+.rule{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 28px 28px;text-align:center}
+.viz{background:none;height:230px;padding:0 4px;border-radius:0}
+.viz .viz-cap{text-align:center;font-size:14px;margin-bottom:16px}
+.cmp-row span,.sh-row span{font-size:14px}
+.track{height:18px;border-radius:9px}
+.sh-track{height:16px}
+.feel{justify-content:center}
+.viz.feel p{text-align:left;font-size:14px}
+.viz.feel{flex-direction:column;gap:18px}
+.feel-num{font-size:clamp(80px,7vw,110px);flex:none}
+.viz.feel p{text-align:center;font-size:14px}
+.viz.feel .people{grid-template-columns:repeat(15,12px);gap:5px;justify-content:center;margin:0 0 10px}
+.viz.feel .people i{width:12px;height:12px}
+.cmp{text-align:left}
+.rule h3{margin:24px 0 8px;padding-top:24px;border-top:1px solid var(--line)}
+.rule p{margin:0 auto;max-width:32ch;font-size:15.5px}
+.approach-end{margin-top:clamp(40px,5vw,64px);font:500 clamp(20px,1.8vw,24px)/1.4 var(--display);letter-spacing:-.01em;max-width:46ch}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,96px);align-items:start}
@@ -233,7 +278,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
   .nav-links.open a{font-size:18px;padding:12px 0;opacity:1}
   .sec-head,.feature,.approach-top,.about-grid,.exp-grid{grid-template-columns:1fr}
   .trio{grid-template-columns:1fr 1fr}
-  .rules{grid-template-columns:1fr}
+  .rules{grid-template-columns:1fr;max-width:560px}
   .tools{grid-template-columns:1fr}
   .portrait{position:relative;top:0;max-width:440px;aspect-ratio:1/1}
   .hero::before{background:linear-gradient(0deg,var(--ink) 18%,rgba(14,26,43,.55) 60%,rgba(14,26,43,.25) 100%)}
@@ -271,9 +316,9 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
       Rhys Miranda
     </a>
     <ul class="nav-links" id="navlinks">
+      <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#approach">Approach</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -312,12 +357,56 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
 <div class="status ink">
   <div class="wrap">
     <span><span class="dot-live"></span><b>Open to 2026/27</b> graduate and internship roles in ML engineering, quant and data science</span>
+    <span><b>Winner</b>, HKSTP One Person Company (OPC) Hackathon 2026</span>
     <span>Previously at <b>Guns and Rain</b>, <b>Just Grace NPC</b> and <b>Suca Foods</b></span>
   </div>
 </div>
 
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div class="portrait"><img src="images/portrait.jpeg" alt="Rhys Miranda speaking on stage with a microphone" loading="lazy" /></div>
+    <div class="about-copy">
+      <h2 class="h2">Hi, I'm Rhys.</h2>
+      <p class="big">I study Data &amp; Systems Engineering at CityU in Hong Kong. I grew up in Mumbai, and work and study have since taken me to South Africa, Vietnam and New Zealand.</p>
+      <p>When I'm not at a screen, I'm on a basketball court, near the sea, or halfway through a book. I try to leave every place, and every system, a little better than I found it.</p>
+      <div class="places">
+        <svg viewBox="40 40 320 320" role="img" aria-label="Globe marking India, Hong Kong, Vietnam, South Africa and New Zealand">
+          <defs>
+            <radialGradient id="gB" cx="34%" cy="26%" r="80%"><stop offset="0" stop-color="#2A3C5E"/><stop offset=".55" stop-color="#1A2A44"/><stop offset="1" stop-color="#0F1B2E"/></radialGradient>
+            <clipPath id="gC"><circle cx="200" cy="200" r="150"/></clipPath>
+          </defs>
+          <circle cx="200" cy="200" r="150" fill="url(#gB)"/>
+          <g clip-path="url(#gC)" fill="none" stroke="rgba(186,202,235,.16)">
+            <path d="M125 70.1H275M70.1 125H329.9M50 200H350M70.1 275H329.9M125 329.9H275M200 50V350"/>
+            <ellipse cx="200" cy="200" rx="75" ry="150"/><ellipse cx="200" cy="200" rx="129.9" ry="150"/>
+          </g>
+          <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(186,202,235,.3)"/>
+          <g fill="none" stroke="#8C9BFF" stroke-width="2" stroke-linecap="round">
+            <path d="M146.6,151 Q193.9,117.1 245.6,143"/><path d="M245.6,143 Q251.1,141.5 233,167.1"/>
+            <path d="M245.6,143 Q124.5,226.7 78.9,283.7"/><path d="M245.6,143 Q316.2,223.4 318.2,289.9"/>
+          </g>
+          <circle class="mk-ring" cx="245.6" cy="143" r="6" fill="none" stroke="#F2557A" stroke-width="1.6"/>
+          <circle cx="245.6" cy="143" r="6" fill="#F2557A"/>
+          <g fill="#EEF1F7"><circle cx="146.6" cy="151" r="4.5"/><circle cx="233" cy="167.1" r="4.5"/><circle cx="78.9" cy="283.7" r="4.5"/><circle cx="318.2" cy="289.9" r="4.5"/></g>
+        </svg>
+        <div>
+          <h3>Five countries, so far.</h3>
+          <ul class="place-list">
+            <li><b>Mumbai</b><span>Where I grew up.</span></li>
+            <li><b>Hong Kong</b><span>Home now: CityU, NVIDIA, HKSTP Talent Foundry.</span></li>
+            <li><b>Johannesburg &amp; Langa</b><span>Data and AI internships.</span></li>
+            <li><b>Buon Ma Thuot</b><span>Websites for Suca Foods with AIESEC.</span></li>
+            <li><b>Auckland</b><span>Exchange semester in cybersecurity and AI.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WORK -->
-<section class="sec" id="work">
+<section class="sec" id="work" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2">Things I've built.</h2>
@@ -330,11 +419,11 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
         <div class="panel-cap"><i></i>Money-mule network, simulated</div>
       </div>
       <div>
-        <p class="proj-org">NVIDIA, SME lending</p>
+        <p class="proj-org nv">NVIDIA, SME lending</p>
         <h3>GPU-accelerated fraud detection</h3>
-        <p>Organised fraud in small-business lending hides in plain sight: each fake account looks normal on its own. So I look at the network instead. A GPU pipeline pairs graph models with XGBoost to catch account farms and mule rings, and an agent reads the streaming HKMA-IADS data so nobody has to hand-update rules. Real fraud data is scarce, so I also wrote a generator for synthetic fraud graphs to test against.</p>
+        <p>Organised fraud in small-business lending hides in plain sight: each fake account looks normal on its own, so I look at the network instead. Real fraud data is private, so I built a generator for synthetic fraud graphs. At a realistic 1% fraud rate, a graph model found 2.7 times more fraud than a gradient-boosted baseline given the same information. At NVIDIA, that idea runs as a GPU pipeline pairing graph models with XGBoost, with agents reading streaming lending data so nobody has to hand-update rules.</p>
         <div class="facts">
-          <div><b>8</b>fraud typologies</div>
+          <div><b>2.7×</b>more fraud than baseline</div>
           <div><b>GNN + XGBoost</b>hybrid model</div>
           <div><b>Real-time</b>Kafka and Morpheus</div>
         </div>
@@ -382,10 +471,10 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
         </div>
         <p class="proj-org">Applied research</p>
         <h3>Quantum error correction with LLMs</h3>
-        <p>Quantum computers make errors constantly, and a decoder has to guess which qubits went wrong. I had LLMs work alongside numerical optimisers to re-weight an MWPM decoder's matching graph, learning from the cases it got wrong.</p>
+        <p>Quantum computers make errors constantly, and a decoder has to guess which qubits went wrong. I had LLMs work alongside numerical optimisers to re-weight an MWPM decoder's matching graph, learning from the cases it got wrong. I report the two results separately, because simulation flatters.</p>
         <div class="facts">
-          <div><b>2–5%</b>lower logical error rate</div>
-          <div><b>Sycamore</b>real chip data</div>
+          <div><b>2.8%</b>lower error, simulated</div>
+          <div><b>0.74%</b>lower error, Google hardware</div>
         </div>
         <p class="stack">Built with <span>LLMs, BPOSD, MWPM, dual annealing, TuRBO</span></p>
       </article>
@@ -424,73 +513,50 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
   <div class="wrap">
     <div class="approach-top">
       <h2 class="h2">I don't trust a model until it beats a boring one.</h2>
-      <div>
-        <p class="big">Most of the job is checking my own work.</p>
-        <p>A model can score well and still be learning the wrong thing. So I start with the dullest baseline I can find, and anything fancier has to beat it by enough to matter. If a graph neural net can't outdo gradient boosting on flat features, the graph isn't adding anything, and I'd rather find that out myself than hear it from someone else. Then I try to explain the result to someone who wasn't in the room. If I can't, it isn't finished.</p>
-      </div>
+      <p><strong>Most of the job is checking my own work.</strong> A model can score well and still be learning the wrong thing. So I start with the dullest baseline I can find, and anything fancier has to beat it by enough to matter. If a graph neural net can't outdo gradient boosting on flat features, the graph isn't adding anything, and I'd rather find that out myself than hear it from someone else.</p>
     </div>
-    <div class="rules">
-      <div class="rule">
-        <h3>Baselines first</h3>
-        <p>Ablations before claims. I report how much a model beats the simple version by, not just its headline score, because the headline score is usually the least interesting number.</p>
-      </div>
-      <div class="rule">
-        <h3>Show the working</h3>
-        <p>If a system flags someone's loan application, a person should be able to see why and argue with it. That's why the fraud pipeline comes with SHAP explanations and guardrails.</p>
-      </div>
-      <div class="rule">
-        <h3>Numbers people feel</h3>
-        <p>The result I'm proudest of from South Africa isn't a model score. It's cutting data retrieval time by 40% for the 15+ people who depended on it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="sec" id="about">
-  <div class="wrap about-grid">
-    <div class="portrait"><img src="images/portrait.jpeg" alt="Rhys Miranda speaking on stage with a microphone" loading="lazy" /></div>
-    <div class="about-copy">
-      <h2 class="h2">Hi, I'm Rhys.</h2>
-      <p class="big">I study Data &amp; Systems Engineering at CityU in Hong Kong. I grew up in Mumbai, and work and study have since taken me to South Africa, Vietnam and New Zealand.</p>
-      <p>When I'm not at a screen, I'm on a basketball court, near the sea, or halfway through a book. I try to leave every place, and every system, a little better than I found it.</p>
-      <div class="places">
-        <svg viewBox="40 40 320 320" role="img" aria-label="Globe marking India, Hong Kong, Vietnam, South Africa and New Zealand">
-          <defs>
-            <radialGradient id="gB" cx="34%" cy="26%" r="80%"><stop offset="0" stop-color="#2A3C5E"/><stop offset=".55" stop-color="#1A2A44"/><stop offset="1" stop-color="#0F1B2E"/></radialGradient>
-            <clipPath id="gC"><circle cx="200" cy="200" r="150"/></clipPath>
-          </defs>
-          <circle cx="200" cy="200" r="150" fill="url(#gB)"/>
-          <g clip-path="url(#gC)" fill="none" stroke="rgba(186,202,235,.16)">
-            <path d="M125 70.1H275M70.1 125H329.9M50 200H350M70.1 275H329.9M125 329.9H275M200 50V350"/>
-            <ellipse cx="200" cy="200" rx="75" ry="150"/><ellipse cx="200" cy="200" rx="129.9" ry="150"/>
-          </g>
-          <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(186,202,235,.3)"/>
-          <g fill="none" stroke="#8C9BFF" stroke-width="2" stroke-linecap="round">
-            <path d="M146.6,151 Q193.9,117.1 245.6,143"/><path d="M245.6,143 Q251.1,141.5 233,167.1"/>
-            <path d="M245.6,143 Q124.5,226.7 78.9,283.7"/><path d="M245.6,143 Q316.2,223.4 318.2,289.9"/>
-          </g>
-          <circle class="mk-ring" cx="245.6" cy="143" r="6" fill="none" stroke="#F2557A" stroke-width="1.6"/>
-          <circle cx="245.6" cy="143" r="6" fill="#F2557A"/>
-          <g fill="#EEF1F7"><circle cx="146.6" cy="151" r="4.5"/><circle cx="233" cy="167.1" r="4.5"/><circle cx="78.9" cy="283.7" r="4.5"/><circle cx="318.2" cy="289.9" r="4.5"/></g>
-        </svg>
-        <div>
-          <h3>Five countries, so far.</h3>
-          <ul class="place-list">
-            <li><b>Mumbai</b><span>Where I grew up.</span></li>
-            <li><b>Hong Kong</b><span>Home now: CityU, NVIDIA, HKSTP Talent Foundry.</span></li>
-            <li><b>Johannesburg &amp; Langa</b><span>Data and AI internships.</span></li>
-            <li><b>Buon Ma Thuot</b><span>Websites for Suca Foods with AIESEC.</span></li>
-            <li><b>Auckland</b><span>Exchange semester in cybersecurity and AI.</span></li>
-          </ul>
+    <div class="rules" id="rules">
+      <article class="rule">
+        <div class="viz" aria-hidden="true">
+          <div class="cmp">
+            <div class="cmp-row"><span>Boring baseline</span><div class="track"><i class="b-base" style="--w:56%"></i></div></div>
+            <div class="cmp-row"><span>Fancier model</span><div class="track"><i class="b-model" style="--w:82%"></i></div></div>
+            <div class="cmp-bar" style="--x:68%"><em>Has to clear this</em></div>
+          </div>
         </div>
-      </div>
+        <h3>Baselines first</h3>
+        <p>I report how much a model beats the simple version by, not just its headline score.</p>
+      </article>
+      <article class="rule">
+        <div class="viz" aria-hidden="true">
+          <p class="viz-cap">Why this application was flagged</p>
+          <div class="shap">
+            <div class="sh-row"><span>Shares a device with 4 applicants</span><div class="sh-track"><i class="up" style="--w:46%"></i></div></div>
+            <div class="sh-row"><span>Account opened 3 days ago</span><div class="sh-track"><i class="up" style="--w:30%"></i></div></div>
+            <div class="sh-row"><span>Clean repayment history</span><div class="sh-track"><i class="down" style="--w:20%"></i></div></div>
+          </div>
+        </div>
+        <h3>Show the working</h3>
+        <p>If a system flags someone's loan, they should be able to see why and argue with it.</p>
+      </article>
+      <article class="rule">
+        <div class="viz feel" aria-hidden="true">
+          <div class="feel-num">40%</div>
+          <div>
+            <div class="people"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p>less time finding data, for 15+ people</p>
+          </div>
+        </div>
+        <h3>Numbers people feel</h3>
+        <p>My proudest result in South Africa wasn't a model score. It was time saved for real people.</p>
+      </article>
     </div>
+    <p class="approach-end">Then I try to explain the result to someone who wasn't in the room. If I can't, it isn't finished.</p>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section class="sec" id="experience" style="padding-top:0">
+<section class="sec" id="experience">
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2">Experience.</h2>
@@ -546,7 +612,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
       <aside class="side">
         <section>
           <h3>Education</h3>
-          <div class="edu"><b>BSc Data &amp; Systems Engineering</b><span>City University of Hong Kong, 2023 – 2026</span></div>
+          <div class="edu"><b>BSc Data &amp; Systems Engineering</b><span>City University of Hong Kong, 2023 – Feb 2027 (expected)</span></div>
           <div class="edu"><b>Exchange, Cybersecurity &amp; AI</b><span>University of Auckland, Jul – Nov 2025</span></div>
           <div class="edu"><b>BSc (Hons) Computer Science</b><span>HK Metropolitan University, 2022 – 2023. cGPA 3.88/4, Dean's List</span></div>
         </section>
@@ -559,7 +625,8 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
           <div class="row"><span class="y">2022</span><span>IELTS Academic, Band 8.0 / 9</span></div>
         </section>
         <section>
-          <h3>Leadership</h3>
+          <h3>Awards and leadership</h3>
+          <div class="row"><span class="y">2026</span><span>Winner, HKSTP One Person Company (OPC) Hackathon, with an AI debate and speech coach</span></div>
           <div class="row"><span class="y">2025</span><span>HKSTP Talent Foundry, nominated speaker</span></div>
           <div class="row"><span class="y">2024</span><span>Vice President, AIESEC in CityU</span></div>
           <div class="row"><span class="y">2024</span><span>Merit Award, HK Techathon+ 2024</span></div>
@@ -574,15 +641,16 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2">What I work with.</h2>
-      <p>Python first, GPUs when the data gets big, and whatever the problem needs after that.</p>
+      <p>Python first, C++ when speed matters, and Spark or GPUs when the data gets big.</p>
     </div>
     <dl class="tools">
-      <div><dt>Languages</dt><dd>Python, SQL, JavaScript, HTML and CSS</dd></div>
+      <div><dt>Languages</dt><dd>Python, C++, R, Scala, SQL, JavaScript, Node.js, React, HTML and CSS</dd></div>
       <div><dt>Machine learning</dt><dd>XGBoost, ensemble methods, feature engineering, hyperparameter optimization, statistical analysis</dd></div>
       <div><dt>Deep learning and vision</dt><dd>PyTorch, CNNs, LSTMs, GNNs (PyTorch Geometric), OpenCV</dd></div>
       <div><dt>LLMs and GenAI</dt><dd>LangChain, Hugging Face Transformers, RAG, prompt engineering, multi-agent systems</dd></div>
       <div><dt>NVIDIA and GPU</dt><dd>RAPIDS (cuDF, cuML, cuGraph), NIM, Triton Inference Server, Morpheus</dd></div>
-      <div><dt>Data engineering</dt><dd>Apache Kafka, data pipelines, data quality frameworks, ETL and migration, SQLite</dd></div>
+      <div><dt>Big data and streaming</dt><dd>Hadoop, Apache Spark, Apache Flink, Apache Kafka, Apache Airflow, Pig Latin, HiveQL</dd></div>
+      <div><dt>Databases</dt><dd>MongoDB and other NoSQL stores, SQL databases, SQLite, data quality frameworks, ETL and migration</dd></div>
       <div><dt>Quant and analytics</dt><dd>Financial engineering, Monte Carlo methods, volatility modelling, backtesting, risk management, simulation</dd></div>
       <div><dt>Quantum computing</dt><dd>Quantum error correction, MWPM and BPOSD decoders, numerical optimization</dd></div>
       <div><dt>Cloud and delivery</dt><dd>AWS, Git, Flask, Power BI, SHAP, NeMo Guardrails</dd></div>
@@ -684,6 +752,14 @@ links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { lin
   if (reduce || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.2});
   els.forEach(e => io.observe(e));
+})();
+
+/* ---------- approach charts ---------- */
+(function(){
+  const cards = document.querySelectorAll('.rule');
+  if (reduce || !('IntersectionObserver' in window)) { cards.forEach(c => c.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.35});
+  cards.forEach(c => io.observe(c));
 })();
 
 /* ---------- copy email ---------- */

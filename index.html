@@ -378,25 +378,41 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
 .edu b{display:block;font:600 17px/1.3 var(--display)}
 .edu span{display:block;font-size:14.5px;color:var(--muted)}
 
-/* toolkit */
-.toolkit{background:var(--paper-2)}
-.core{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
-.core li{font:600 16px/1 var(--sans);padding:12px 18px;border-radius:999px;background:#fff;border:1px solid var(--line)}
-.toolkit-more{margin-top:28px}
-.toolkit-more summary{list-style:none;display:inline-flex;align-items:center;gap:10px;cursor:pointer;font:600 15.5px/1 var(--sans);
-  padding:14px 22px;border-radius:999px;border:1.5px solid var(--txt);transition:background .2s,color .2s}
-.toolkit-more summary::-webkit-details-marker{display:none}
-.toolkit-more summary:hover{background:var(--txt);color:var(--paper)}
-.toolkit-more summary svg{transition:transform .25s}
-.toolkit-more[open] summary svg{transform:rotate(180deg)}
-.more-close,.toolkit-more[open] .more-open{display:none}
-.toolkit-more[open] .more-close{display:inline}
-.toolkit-more[open] .tools{margin-top:28px;animation:tkIn .35s cubic-bezier(.2,.7,.2,1)}
-@keyframes tkIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.tools{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px)}
-.tools div{display:grid;grid-template-columns:minmax(150px,.7fr) 1.3fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
-.tools dt{font:600 18px/1.3 var(--display)}
-.tools dd{color:var(--muted);font-size:15.5px}
+/* toolkit: a stack diagram */
+.toolkit{position:relative;overflow:hidden;
+  background-image:radial-gradient(70% 60% at 100% 0%,rgba(140,155,255,.12),transparent 60%),radial-gradient(50% 50% at 0% 100%,rgba(242,85,122,.08),transparent 60%)}
+.tk-grid{display:grid;grid-template-columns:minmax(260px,.75fr) 2fr;gap:clamp(36px,5vw,80px);align-items:start}
+.tk-intro{position:sticky;top:110px}
+.tk-intro .h2{margin-bottom:22px;font-size:clamp(36px,3.9vw,56px)}
+.tk-intro p{color:var(--ink-muted);max-width:34ch}
+.tk-count{display:flex;gap:28px;margin:30px 0 26px}
+.tk-count b{display:block;font:800 46px/1 var(--display);letter-spacing:-.04em;color:var(--ink-txt)}
+.tk-count span{font-size:14px;color:var(--ink-muted)}
+.legend{list-style:none;display:grid;gap:10px;font-size:14.5px;color:var(--ink-muted)}
+.legend li{display:flex;align-items:center;gap:10px}
+.legend i{width:30px;height:16px;border-radius:999px;flex:none}
+.legend .l-used{background:var(--cobalt-soft)}
+.legend .l-alt{border:1.5px solid rgba(238,241,247,.35)}
+.stack{list-style:none;display:grid;gap:0;position:relative}
+.layer{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;padding:22px 24px;border-radius:18px;
+  background:rgba(238,241,247,.035);border:1px solid var(--ink-line);position:relative;
+  transition:background .25s,border-color .25s,transform .25s}
+.layer + .layer{margin-top:14px}
+.layer + .layer::before{content:"";position:absolute;left:44px;top:-15px;width:2px;height:14px;background:var(--ink-line)}
+.layer:hover{background:rgba(238,241,247,.07);border-color:rgba(186,202,235,.3);transform:translateX(4px)}
+.layer-name{display:flex;gap:14px;align-items:flex-start}
+.layer-name i{flex:none;width:12px;height:12px;border-radius:4px;margin-top:6px;background:var(--c);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 22%,transparent)}
+.layer-name b{display:block;font:600 19px/1.25 var(--display);color:var(--ink-txt)}
+.layer-name span{display:block;font-size:13.5px;color:var(--ink-muted);margin-top:3px}
+.chips2{display:flex;flex-wrap:wrap;gap:8px}
+.chips2 span{font:500 14px/1 var(--sans);padding:9px 14px;border-radius:999px;border:1.5px solid rgba(238,241,247,.2);color:#C9D2E1;white-space:nowrap}
+.chips2 span.u{background:var(--cobalt-soft);border-color:var(--cobalt-soft);color:var(--ink);font-weight:600}
+.layer:nth-child(1){--c:var(--signal)}
+.layer:nth-child(2){--c:var(--cobalt-soft)}
+.layer:nth-child(3){--c:#76B900}
+.layer:nth-child(4){--c:#5EC8FF}
+.layer:nth-child(5){--c:#EEF1F7}
+.tk-toggle{display:none}
 
 /* hobbies */
 .life{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
@@ -440,9 +456,11 @@ button.btn{background:none;color:inherit;cursor:pointer}
   .nav-links.open a{font-size:18px;padding:12px 0;opacity:1}
   .sec-head,.feature,.approach-top,.about-grid,.exp-grid{grid-template-columns:1fr}
   .side{position:relative;top:0}
+  .tk-grid{grid-template-columns:1fr}
+  .tk-intro{position:relative;top:0}
+  .layer{grid-template-columns:170px 1fr}
   .trio{grid-template-columns:1fr 1fr}
   .rules{grid-template-columns:1fr;max-width:560px}
-  .tools{grid-template-columns:1fr}
   .portrait{position:relative;top:0;max-width:440px;aspect-ratio:1/1}
   .hero::before{background:linear-gradient(0deg,var(--ink) 18%,rgba(14,26,43,.55) 60%,rgba(14,26,43,.25) 100%)}
 }
@@ -461,7 +479,6 @@ button.btn{background:none;color:inherit;cursor:pointer}
   .job::before{left:-30px;width:18px;height:18px}
   .job-top{flex-direction:column;gap:14px}
   .stat{text-align:left}
-  .tools div{grid-template-columns:1fr;gap:4px}
   .hero-cta .btn{flex:1;justify-content:center}
 
   /* tighter rhythm */
@@ -512,12 +529,16 @@ button.btn{background:none;color:inherit;cursor:pointer}
   .side section{padding:20px 20px 12px}
 
   /* toolkit: compact two-line rows */
-  .tools div{padding:14px 0}
-  .core{gap:8px}
-  .core li{font-size:14.5px;padding:10px 14px}
-  .toolkit-more summary{width:100%;justify-content:center}
-  .tools dt{font-size:16.5px}
-  .tools dd{font-size:14.5px}
+
+  /* toolkit: layers stack, extra tools behind a button */
+  .tk-count{margin:22px 0 18px}
+  .tk-count b{font-size:38px}
+  .layer{grid-template-columns:1fr;gap:14px;padding:18px}
+  .layer + .layer::before{left:24px}
+  .layer:hover{transform:none}
+  .chips2 span{font-size:13.5px;padding:8px 12px}
+  .stack:not(.all) .chips2 span:not(.u){display:none}
+  .tk-toggle{display:flex;width:100%;justify-content:center;margin-top:18px}
 
   /* contact: tidy button grid */
   .contact{padding-top:72px}
@@ -892,31 +913,42 @@ button.btn{background:none;color:inherit;cursor:pointer}
 </section>
 
 <!-- TOOLKIT -->
-<section class="sec toolkit" id="toolkit">
-  <div class="wrap">
-    <div class="sec-head">
+<section class="sec toolkit ink" id="toolkit">
+  <div class="wrap tk-grid">
+    <div class="tk-intro">
       <h2 class="h2">What I work with.</h2>
-      <p>Python first, C++ when speed matters, and Spark or GPUs when the data gets big.</p>
+      <p>Python first, C++ when speed matters, and Spark or GPUs when the data gets big. Here it is as a stack, from the code up to what it builds.</p>
+      <div class="tk-count"><div><b>52</b><span>tools and methods</span></div><div><b>5</b><span>layers of the stack</span></div></div>
+      <ul class="legend">
+        <li><i class="l-used"></i>Used in the projects on this page</li>
+        <li><i class="l-alt"></i>Also comfortable with</li>
+      </ul>
     </div>
-    <ul class="core" aria-label="Core skills">
-      <li>Python</li><li>C++</li><li>PyTorch</li><li>XGBoost</li><li>Graph neural networks</li><li>RAPIDS on GPU</li><li>Apache Spark</li><li>Kafka</li><li>LLMs and agents</li><li>SQL</li>
-    </ul>
-    <details class="toolkit-more">
-      <summary><span class="more-open">Show full toolkit</span><span class="more-close">Hide full toolkit</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <dl class="tools">
-      <div><dt>Languages</dt><dd>Python, C++, R, Scala, SQL, JavaScript, Node.js, React, HTML and CSS</dd></div>
-      <div><dt>Machine learning</dt><dd>XGBoost, ensemble methods, feature engineering, hyperparameter optimization, statistical analysis</dd></div>
-      <div><dt>Deep learning and vision</dt><dd>PyTorch, CNNs, LSTMs, GNNs (PyTorch Geometric), OpenCV</dd></div>
-      <div><dt>LLMs and GenAI</dt><dd>LangChain, Hugging Face Transformers, RAG, prompt engineering, multi-agent systems</dd></div>
-      <div><dt>NVIDIA and GPU</dt><dd>RAPIDS (cuDF, cuML, cuGraph), NIM, Triton Inference Server, Morpheus</dd></div>
-      <div><dt>Big data and streaming</dt><dd>Hadoop, Apache Spark, Apache Flink, Apache Kafka, Apache Airflow, Pig Latin, HiveQL</dd></div>
-      <div><dt>Databases</dt><dd>MongoDB and other NoSQL stores, SQL databases, SQLite, data quality frameworks, ETL and migration</dd></div>
-      <div><dt>Quant and analytics</dt><dd>Financial engineering, Monte Carlo methods, volatility modelling, backtesting, risk management, simulation</dd></div>
-      <div><dt>Quantum computing</dt><dd>Quantum error correction, MWPM and BPOSD decoders, numerical optimization</dd></div>
-      <div><dt>Cloud and delivery</dt><dd>AWS, Git, Flask, Power BI, SHAP, NeMo Guardrails</dd></div>
-    </dl>
-    </details>
+    <div>
+      <ol class="stack" id="stack">
+        <li class="layer">
+          <div class="layer-name"><i></i><div><b>What I build</b><span>LLM apps, quant and research</span></div></div>
+          <div class="chips2"><span class="u">LLMs and multi-agent systems</span><span class="u">RAG</span><span class="u">LangChain</span><span class="u">NVIDIA NIM</span><span class="u">Hugging Face</span><span>Prompt engineering</span><span class="u">Monte Carlo</span><span class="u">Backtesting</span><span>Volatility modelling</span><span>Transaction cost analysis</span><span class="u">Quantum error correction</span><span class="u">MWPM and BP-OSD</span></div>
+        </li>
+        <li class="layer">
+          <div class="layer-name"><i></i><div><b>Models</b><span>How it learns</span></div></div>
+          <div class="chips2"><span class="u">PyTorch</span><span class="u">PyTorch Geometric</span><span class="u">XGBoost</span><span class="u">SHAP</span><span>scikit-learn</span><span>TensorFlow / Keras</span><span class="u">CNNs</span><span class="u">LSTMs</span><span class="u">OpenCV</span><span class="u">Feature engineering</span></div>
+        </li>
+        <li class="layer">
+          <div class="layer-name"><i></i><div><b>Compute and serving</b><span>Where it runs</span></div></div>
+          <div class="chips2"><span class="u">RAPIDS cuDF, cuML, cuGraph</span><span class="u">Triton Inference Server</span><span class="u">Morpheus</span><span class="u">Flask</span><span>FastAPI</span><span>gRPC</span><span>Docker</span><span>AWS</span><span>NeMo Guardrails</span><span>Git</span></div>
+        </li>
+        <li class="layer">
+          <div class="layer-name"><i></i><div><b>Data</b><span>Where it lives and moves</span></div></div>
+          <div class="chips2"><span class="u">Apache Kafka</span><span class="u">SQLite</span><span>Apache Spark</span><span>Apache Flink</span><span>Apache Airflow</span><span>Hadoop</span><span>Pig Latin</span><span>HiveQL</span><span>MongoDB and NoSQL</span><span class="u">Power BI</span><span>Tableau</span></div>
+        </li>
+        <li class="layer">
+          <div class="layer-name"><i></i><div><b>Languages</b><span>What I write it in</span></div></div>
+          <div class="chips2"><span class="u">Python</span><span class="u">SQL</span><span>C++</span><span>R</span><span>Scala</span><span>JavaScript</span><span>Node.js</span><span>React</span><span>HTML and CSS</span></div>
+        </li>
+      </ol>
+      <button class="btn btn-outline tk-toggle" id="tkToggle" type="button" aria-controls="stack" aria-expanded="false">Show everything I use</button>
+    </div>
   </div>
 </section>
 
@@ -1023,6 +1055,12 @@ links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { lin
   if (reduce || !('IntersectionObserver' in window)) { cards.forEach(c => c.classList.add('in')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.35});
   cards.forEach(c => io.observe(c));
+})();
+
+/* ---------- toolkit toggle (phones) ---------- */
+(function(){
+  const t = document.getElementById('tkToggle'), st = document.getElementById('stack');
+  t.addEventListener('click', () => { const on = st.classList.toggle('all'); t.textContent = on ? 'Show fewer' : 'Show everything I use'; t.setAttribute('aria-expanded', on); });
 })();
 
 /* ---------- copy email ---------- */

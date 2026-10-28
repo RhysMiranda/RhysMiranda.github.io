@@ -243,6 +243,11 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-s
 .proj-org{display:inline-block;font-size:14.5px;font-weight:600;color:var(--cobalt);background:rgba(51,70,240,.09);
   padding:6px 13px;border-radius:999px;margin-bottom:16px;line-height:1.3}
 .trio .proj-org{background:var(--signal);color:var(--ink);font-weight:700}
+.proj-org.sig{background:var(--signal);color:var(--ink);font-weight:700}
+.proj-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.proj-links a{font-size:14.5px;font-weight:600;text-decoration:none;padding:8px 16px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);transition:background .2s,color .2s}
+.proj-links a:first-child{background:var(--ink);color:var(--paper)}
+.proj-links a:hover{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .proj-org.nv{background:#76B900;color:#0B1A00;box-shadow:0 8px 22px -10px rgba(118,185,0,.75)}
 .proj h3{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.03em;margin-bottom:16px}
 .feature .proj h3{font-size:clamp(32px,3.6vw,50px)}
@@ -663,7 +668,7 @@ button.btn{background:none;color:inherit;cursor:pointer}
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2">Things I've built.</h2>
-      <p>Four projects, from GPU fraud pipelines to a quantum decoder. Each one started with a boring baseline it had to beat.</p>
+      <p>Five projects, from GPU fraud pipelines to a quantum decoder. Each one started with a boring baseline it had to beat.</p>
     </div>
 
     <article class="feature proj" id="fraud">
@@ -681,6 +686,34 @@ button.btn{background:none;color:inherit;cursor:pointer}
           <div><b>Real-time</b>Kafka and Morpheus</div>
         </div>
         <p class="stack">Built with <span>RAPIDS, cuGraph, PyTorch Geometric, Triton, LangChain, NIM, SHAP</span></p>
+      </div>
+    </article>
+
+    <article class="feature proj" id="silver">
+      <div class="panel">
+        <svg viewBox="0 0 460 345" role="img" aria-label="Two lines: the ETF's overnight returns rising steeply, its daytime returns falling">
+          <g stroke="rgba(186,202,235,.1)"><path d="M0 90H460M0 172H460M0 254H460"/></g>
+          <path d="M30 172H430" stroke="rgba(186,202,235,.35)" stroke-dasharray="4 6"/>
+          <polyline class="draw" style="--len:560" points="30,172 70,160 110,150 150,128 190,122 230,98 270,86 310,70 350,62 390,44 430,34" fill="none" stroke="#8C9BFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <polyline class="draw" style="--len:480" points="30,172 70,184 110,180 150,200 190,214 230,210 270,228 310,240 350,236 390,252 430,262" fill="none" stroke="#F2557A" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <g font-family="IBM Plex Sans,sans-serif" font-size="15" font-weight="600">
+            <text x="430" y="22" text-anchor="end" fill="#C9D0FF">Overnight</text>
+            <text x="430" y="292" text-anchor="end" fill="#F2557A">Indian trading hours</text>
+          </g>
+        </svg>
+        <div class="panel-cap"><i></i>Silver ETF returns, 2022 to 2026</div>
+      </div>
+      <div>
+        <p class="proj-org sig">Market research, live pipeline</p>
+        <h3>Does the news move silver ETFs?</h3>
+        <p>I scored 234,000 headlines with FinBERT on Spark to see whether the morning's news predicts Indian silver ETFs. It doesn't: last night's silver and rupee moves already explain the day. The data showed something else instead. The ETF opened about 18 bps a day too high and gave it back within an hour, so buying at 10:15 rather than the open turned −50% into +15%, an edge that has since faded. A daily Airflow job now paper-trades it into MongoDB, behind a FastAPI service and a React dashboard.</p>
+        <div class="facts">
+          <div><b>234k</b>headlines scored</div>
+          <div><b>t = −4.0</b>first-hour giveback</div>
+          <div><b>Live</b>daily paper trading</div>
+        </div>
+        <p class="stack">Built with <span>Spark, FinBERT, BigQuery, Airflow, MongoDB, FastAPI, React, Docker, R</span></p>
+        <p class="proj-links"><a href="https://rhysmiranda.github.io/silver-signal/">Live dashboard</a><a href="https://github.com/RhysMiranda/silver-signal">Code and write-up</a></p>
       </div>
     </article>
 
